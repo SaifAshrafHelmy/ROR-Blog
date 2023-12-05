@@ -1,26 +1,29 @@
-<h3>All Articles</h3>
+<h1>All Articles</h1>
+
+Our blog has <%= Article.public_count %> articles and counting!
 
 <%= link_to("New Article?", new_article_path) %>
 
 
 <ul>
 
-    
-<%  @articles.each do |article| %>
 
-    <li>
-        <h4>title</h4> <%= article.title%>,
-        <h4>body</h4> <%= article.body%>
+  <% @articles.each do |article| %>
+
+    <% unless article.archived? %>
+      <li>
+        <h4>title</h4> <%= article.title %>,
+        <h4>body</h4> <%= article.body %>
         <h5>
-            <a href="/articles/<%= article.id%>">
-        
-        </a>
-        <%= link_to "Visit the article", article%>
-        </h5>
-    </li>
-    
-<% end %>
+          <a href="/articles/<%= article.id %>">
 
+          </a>
+          <%= link_to "Visit the article", article %>
+        </h5>
+      </li>
+    <% end %>
+
+  <% end %>
 
 
 </ul>
