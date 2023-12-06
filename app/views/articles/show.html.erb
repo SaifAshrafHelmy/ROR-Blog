@@ -2,11 +2,11 @@
 
 
 
-<p><%= @article.body%></p>
+<p><%= @article.body %></p>
 
 
 <ul>
-  <li>    <%= link_to "Edit", edit_article_path(@article)  %>  </li>
+  <li>    <%= link_to "Edit", edit_article_path(@article) %>  </li>
   <li>    <%= link_to "Delete", article_path(@article), data: {
     turbo_method: :delete,
     turbo_confirm: "Are you sure?"
@@ -14,7 +14,11 @@
 
 </ul>
 
+
 <%= render "comments/form" %>
 
+
 <h2>Comments</h2>
-<%= render @article.comments %>
+<%= render @article.comments.reject(&:new_record?) %>
+
+
